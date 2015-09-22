@@ -10,8 +10,9 @@ class BookmarksWeb < Sinatra::Base
 
   post '/links' do
     link = Link.new(url: params[:url], title: params[:title])
-    tag = Tag.create(name: params[:tag])
-    link.tags << tag
+    params[:tags].split(" ").each do |tag| 
+      link.tags << Tag.create(name: tag)
+    end
     link.save
     redirect "/links"
   end
