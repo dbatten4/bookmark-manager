@@ -1,24 +1,20 @@
-
 require_relative '../spec_helper'
 
 feature 'Viewing links' do
 
   scenario 'I can see existing links on the links page' do
-    Link.new(url: 'http://www.makersacademy.com', title: 'Makers Academy')
-
+    Link.new(url: 'http://www.zombo.com', title: 'This is Zombocom')
     visit '/links'
-
-    # as this is our first feature test,
-    # the following expectation is a quick check that everything is working.
     expect(page.status_code).to eq 200
-    # you might remove this later.
-
-    # why do we use within here?
-    # might we get a false positive if we just test for 'Makers Academy'?
     within 'ul#links' do
-      expect(page).to have_content('Makers Academy')
+      expect(page).to have_content('This is Zombocom')
     end
+  end
 
+  scenario 'I can click a link which takes me to the create link page' do 
+    visit '/links'
+    click_link('Add link')
+    expect(page).to have_content('URL')
   end
 
 end
