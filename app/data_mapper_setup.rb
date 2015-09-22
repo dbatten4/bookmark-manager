@@ -6,6 +6,7 @@ env = ENV['RACK_ENV'] || 'development'
 DataMapper.setup(:default, "postgres://localhost/bookmarks_test")
 
 require_relative 'models/link' # require each model individually - the path may vary depending on your file structure.
+require_relative 'models/tag'
 
 # After declaring your models, you should finalise them
 DataMapper.finalize
