@@ -10,7 +10,7 @@ feature 'Viewing links' do
                 title: 'Google',
                 tags: [Tag.first_or_create(name: 'search')])
     Link.create(url: 'http://www.zombo.com',
-                title: 'Zombocom',
+                title: 'This is Zombocom',
                 tags: [Tag.first_or_create(name: 'bubbles')])
     Link.create(url: 'http://www.bubble-bobble.com',
                 title: 'Bubble Bobble',
@@ -18,11 +18,11 @@ feature 'Viewing links' do
   end
 
   scenario 'I can see existing links on the links page' do
-    Link.create(url: 'http://www.zombo.com', title: 'This is Zombocom')
+    Link.create(url: 'http://www.makersacademy.com', title: 'Makers Academy')
     visit '/links'
     expect(page.status_code).to eq 200
     within 'ul#links' do
-      expect(page).to have_content('This is Zombocom')
+      expect(page).to have_content('Makers Academy')
     end
   end
 
