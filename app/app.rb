@@ -2,8 +2,9 @@ require 'sinatra/base'
 require_relative 'data_mapper_setup'
 
 class BookmarksWeb < Sinatra::Base
-  get '/' do
-    'Hello BookmarksWeb!'
+  get '/links' do
+    @links = Link.all
+    erb :'index'
   end
 
   # start the server if ruby file executed directly
