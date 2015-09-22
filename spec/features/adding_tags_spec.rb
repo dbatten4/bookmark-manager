@@ -21,4 +21,14 @@ feature 'Adding tags' do
     expect(link.tags.map(&:name)).to include('education', 'ruby')
   end
 
+  scenario 'No tag is created if I submit an empty tag' do
+    visit 'links/new'
+    fill_in 'url', with: 'http://makersacademy.com/'
+    fill_in 'title', with: 'Makers Academy'
+    fill_in 'tags', with: ''
+    click_button 'Create link'
+    link = Link.first
+    expect(link.tags.map(&:name)).not_to include('')
+  end
+
 end
